@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: golem-base-sdk
+Version: 1.0.0
+Summary: Python SDK for GolemBase
+Home-page: https://github.com/golem-base/python-sdk
+Author: GolemBase Team
+Author-email: info@golem-base.io
+Keywords: golem,blockchain,storage
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.8
+Requires-Dist: web3>=6.0.0
+Requires-Dist: eth-account>=0.8.0
+Requires-Dist: requests>=2.25.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
