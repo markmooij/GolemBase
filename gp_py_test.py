@@ -10,29 +10,29 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("GolemBaseTest")
 
 # Read private key
-with open('C:/Users/markm/AppData/Local/golembase/private.key', 'rb') as f:
+with open('PATHTOPRIVATEKEY', 'rb') as f:
     key_bytes = f.read()
 
 # Create client
-client = create_client(key_bytes, 'http://192.168.68.114:8545', logger)
+client = create_client(key_bytes, 'http://localhost:8545', logger)
 
 def test_create_entity():
     """Test creating an entity"""
     logger.info("Testing create_entities...")
     
-    # creates = [{
-    #     "data": "Hello, GolemBase!",
-    #     "ttl": 25,
-    #     "stringAnnotations": [["key", "greeting"], ["test", "create"]],
-    #     "numericAnnotations": [["ix", 1], ["test", 100]]
-    # }]
-    
     creates = [{
-        "data": json.dumps([{"status" : "ok"}]),
+        "data": "Hello, GolemBase!",
         "ttl": 25,
-        "stringAnnotations": [["status", "ok"]],
-        "numericAnnotations": [["ix", 1], ["date", 1745331981]]
+        "stringAnnotations": [["key", "greeting"], ["test", "create"]],
+        "numericAnnotations": [["ix", 1], ["test", 100]]
     }]
+    
+    # creates = [{
+    #     "data": json.dumps([{"status" : "ok"}]),
+    #     "ttl": 25,
+    #     "stringAnnotations": [["status", "ok"]],
+    #     "numericAnnotations": [["ix", 1], ["date", 1745331981]]
+    # }]
     
     
     receipts = client.create_entities(creates)
@@ -207,32 +207,32 @@ def test_delete_entity(entity_key):
 def run_all_tests():
     """Run all tests in sequence"""
     try:
-        # # Create an entity and get its key
-        # entity_key = test_create_entity()
+        # Create an entity and get its key
+        entity_key = test_create_entity()
         
         # # Test getting metadata and storage value
-        entity_key = "0x437b7320e630afbc9caf9da3984e70e21d145d0e7e379700080cef521a235d79"
+        # entity_key = "0x437b7320e630afbc9caf9da3984e70e21d145d0e7e379700080cef521a235d79"
         metadata = test_get_entity_metadata(entity_key)
         value = test_get_storage_value(entity_key)
-        print(metadata)
+        # print(metadata)
 
-        value = json.loads(value)
-        value.append({"status": "ok"})
+        # value = json.loads(value)
+        # value.append({"status": "ok"})
 
-        # Test updating the entity        
-        test_data_update_entity(entity_key, value, metadata)
+        # Test updating the data entity        
+        # test_data_update_entity(entity_key, value, metadata)
 
-        # # Test updating the entity
-        # test_update_entity(entity_key)        
+        # Test updating the entity
+        test_update_entity(entity_key)        
         
-        # # Test extending the entity's TTL
-        # test_extend_entity(entity_key)
+        # Test extending the entity's TTL
+        test_extend_entity(entity_key)
         
         # Test query functions
-        # test_query_functions()
+        test_query_functions()
         
         # Test deleting the entity
-        # test_delete_entity(entity_key)
+        test_delete_entity(entity_key)
         
         logger.info("All tests completed successfully!")
         
